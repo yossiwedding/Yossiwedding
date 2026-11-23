@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tallis bags – Yossi’s wedding</title>
+<link rel="stylesheet" href="style.css">
+<style>
+  main { max-width:640px; }
+  .pick { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin:0 0 20px; }
+  .pick label { display:block; cursor:pointer; }
+  .pick input { position:absolute; opacity:0; }
+  .pick .opt { display:block; border:3px solid var(--line); border-radius:12px; overflow:hidden; background:#fff; }
+  .pick img { display:block; width:100%; height:auto; }
+  .pick .cap { display:block; padding:8px 6px; font-size:.9rem; color:var(--muted); text-align:center; background:var(--card); }
+  .pick input:checked + .opt { border-color:var(--accent); }
+  .pick input:checked + .opt .cap { color:var(--accent); font-weight:bold; }
+  .pick input:focus-visible + .opt { outline:2px solid var(--accent); outline-offset:2px; }
+</style>
+</head>
+<body>
+<nav><a href="index.html" class="">RSVP</a><a href="venue.html" class="">Venue</a><a href="rides.html" class="">Rides</a><a href="musicians.html" class="">Musicians</a><a href="invitations.html" class="">Invitations</a><a href="tallis.html" class="on">Tallis bags</a></nav>
+<main>
+  <h1>Which tallis bag do you prefer?</h1>
+  <p class="lead">Tap the one you like best, then send your choice.</p>
+
+  <form action="https://formsubmit.co/yosef5731849@gmail.com" method="POST">
+    <input type="hidden" name="_subject" value="Tallis bag choice">
+    <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="_next" value="https://yossiwedding.github.io/Yossiwedding/thanks.html">
+
+    <div class="pick">
+      <label><input type="radio" name="choice" value="1 - Gray and black" required><span class="opt"><img src="tallis1.jpg" alt="Gray tallis bag with black border"><span class="cap">1 · Gray &amp; black</span></span></label>
+      <label><input type="radio" name="choice" value="2 - Black with stripes"><span class="opt"><img src="tallis2.jpg" alt="Black tallis bag with striped pattern"><span class="cap">2 · Black with stripes</span></span></label>
+    </div>
+
+    <div class="card">
+      <label class="f" for="name">Your name (optional)</label>
+      <input type="text" id="name" name="name" autocomplete="name">
+      <button type="submit" style="margin-top:20px">Send my choice</button>
+    </div>
+  </form>
+</main>
+</body>
+</html>
