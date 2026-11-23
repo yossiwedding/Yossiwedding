@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rides – Yossi’s wedding</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<nav><a href="index.html" class="">RSVP</a><a href="venue.html" class="">Venue</a><a href="rides.html" class="on">Rides</a><a href="story.html" class="">Our story</a></nav>
+<main>
+  <h1>Rides</h1>
+  <p class="lead">Driving and have free seats? Need a lift? Renting a car? Let us know and we’ll connect you.</p>
+
+  <form class="card" action="https://formsubmit.co/yosef5731849@gmail.com" method="POST">
+    <input type="hidden" name="_subject" value="Wedding rides">
+    <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="_next" value="https://yossiwedding.github.io/Yossiwedding/thanks.html">
+
+    <label class="f" for="name">Your name</label>
+    <input type="text" id="name" name="name" required autocomplete="name">
+
+    <label class="f" for="phone">Phone (so we can connect you)</label>
+    <input type="tel" id="phone" name="phone" required autocomplete="tel">
+
+    <div class="choices">
+      <label><input type="radio" name="ride" value="Driver with free seats" required><span>I’m driving and have free seats</span></label>
+      <label><input type="radio" name="ride" value="Needs a lift"><span>I need a lift</span></label>
+      <label><input type="radio" name="ride" value="Rental car"><span>I’m renting a car</span></label>
+    </div>
+
+    <label class="f" for="from">Coming from (city / area)</label>
+    <input type="text" id="from" name="from" required>
+
+    <label class="f" for="count">Free seats, or how many people need a ride</label>
+    <input type="number" id="count" name="count" min="1" max="10" inputmode="numeric">
+
+    <label class="f" for="notes">Anything else (optional)</label>
+    <textarea id="notes" name="notes" rows="3"></textarea>
+
+    <button type="submit" style="margin-top:20px">Send</button>
+  </form>
+</main>
+</body>
+</html>
