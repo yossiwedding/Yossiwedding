@@ -23,7 +23,6 @@
   .choices span { display:block; text-align:center; padding:12px 8px; border:1px solid var(--line); border-radius:8px; cursor:pointer; }
   .choices input:checked + span { background:var(--accent); color:#fff; border-color:var(--accent); }
   button { width:100%; padding:14px; font-size:1rem; border:0; border-radius:8px; background:var(--accent); color:#fff; cursor:pointer; }
-  button.wa { margin-top:10px; background:#1fa855; }
 </style>
 </head>
 <body>
@@ -44,21 +43,8 @@
       <label><input type="radio" name="answer" value="I can't make it"><span>I can’t make it</span></label>
     </div>
 
-    <button type="submit">Send RSVP by email</button>
-    <button type="button" id="wa" class="wa">Send on WhatsApp</button>
+    <button type="submit">Send RSVP</button>
   </form>
 </main>
-<script>
-  // Put your number with country code, digits only (e.g. 972501234567)
-  var WA_NUMBER = "18455984158";
-  document.getElementById("wa").addEventListener("click", function () {
-    var form = document.querySelector("form");
-    if (!form.reportValidity()) return;
-    var name = form.elements["name"].value;
-    var answer = form.elements["answer"].value;
-    var text = "Wedding RSVP: " + name + " – " + answer;
-    window.location.href = "https://wa.me/" + WA_NUMBER + "?text=" + encodeURIComponent(text);
-  });
-</script>
 </body>
 </html>
