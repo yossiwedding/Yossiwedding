@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Invitations – Yossi’s wedding</title>
+<link rel="stylesheet" href="style.css">
+<style>
+  main { max-width:640px; }
+  .pick { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin:0 0 20px; }
+  .pick label { display:block; cursor:pointer; }
+  .pick input { position:absolute; opacity:0; }
+  .pick .opt { display:block; border:3px solid var(--line); border-radius:12px; overflow:hidden; background:var(--card); }
+  .pick img { display:block; width:100%; height:auto; }
+  .pick .cap { display:block; padding:8px 6px; font-size:.9rem; color:var(--muted); text-align:center; }
+  .pick input:checked + .opt { border-color:var(--accent); }
+  .pick input:checked + .opt .cap { color:var(--accent); font-weight:bold; }
+  .pick input:focus-visible + .opt { outline:2px solid var(--accent); outline-offset:2px; }
+</style>
+</head>
+<body>
+<nav><a href="index.html" class="">RSVP</a><a href="venue.html" class="">Venue</a><a href="rides.html" class="">Rides</a><a href="musicians.html" class="">Musicians</a><a href="invitations.html" class="on">Invitations</a></nav>
+<main>
+  <h1>Which invitation do you prefer?</h1>
+  <p class="lead">Tap the one you like best, then send your choice.</p>
+
+  <form action="https://formsubmit.co/yosef5731849@gmail.com" method="POST">
+    <input type="hidden" name="_subject" value="Invitation choice">
+    <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="_next" value="https://yossiwedding.github.io/Yossiwedding/thanks.html">
+
+    <div class="pick">
+      <label><input type="radio" name="choice" value="1 - Blue, Hebrew" required><span class="opt"><img src="inv1.jpg" alt="Blue invitation, Hebrew"><span class="cap">1 · Blue · Hebrew</span></span></label>
+      <label><input type="radio" name="choice" value="2 - Blue, English"><span class="opt"><img src="inv2.jpg" alt="Blue invitation, English"><span class="cap">2 · Blue · English</span></span></label>
+      <label><input type="radio" name="choice" value="3 - Silver, Hebrew"><span class="opt"><img src="inv3.jpg" alt="Silver invitation, Hebrew"><span class="cap">3 · Silver · Hebrew</span></span></label>
+      <label><input type="radio" name="choice" value="4 - Silver, English"><span class="opt"><img src="inv4.jpg" alt="Silver invitation, English"><span class="cap">4 · Silver · English</span></span></label>
+      <label><input type="radio" name="choice" value="5 - Gold, Hebrew"><span class="opt"><img src="inv5.jpg" alt="Gold piano invitation, Hebrew"><span class="cap">5 · Gold · Hebrew</span></span></label>
+      <label><input type="radio" name="choice" value="6 - Gold, English"><span class="opt"><img src="inv6.jpg" alt="Gold piano invitation, English"><span class="cap">6 · Gold · English</span></span></label>
+    </div>
+
+    <div class="card">
+      <label class="f" for="name">Your name (optional)</label>
+      <input type="text" id="name" name="name" autocomplete="name">
+      <button type="submit" style="margin-top:20px">Send my choice</button>
+    </div>
+  </form>
+</main>
+</body>
+</html>
