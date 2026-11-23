@@ -1,63 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Yossi's Wedding</title>
-  <style>
-    body { font-family: Georgia, serif; background: #fdf8f3; color: #3b2f2f; margin: 0; text-align: center; }
-    header { padding: 60px 20px 30px; }
-    h1 { font-size: 2.2rem; margin-bottom: 8px; }
-    .date { font-size: 1.3rem; color: #8a6d5a; }
-    #countdown { font-size: 1.6rem; margin-top: 20px; font-weight: bold; color: #b5651d; }
-    .rsvp { max-width: 400px; margin: 30px auto; padding: 25px; background: white; border-radius: 12px; box-shadow: 0 2px 10px rgba(0,0,0,0.08); }
-    input { width: 90%; padding: 12px; font-size: 1rem; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 8px; }
-    button { padding: 12px 20px; font-size: 1rem; border: none; border-radius: 8px; cursor: pointer; margin: 5px; color: white; }
-    .yes { background: #4a8c5c; }
-    .no { background: #a65d5d; }
-    #thanks { display: none; font-size: 1.2rem; margin-top: 15px; }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Yossi’s wedding</title>
+<style>
+  :root { --bg:#faf6f0; --fg:#2b2622; --accent:#b5651d; --card:#fff; --line:#e3d9cc; color-scheme: light dark; }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg:#1d1a17; --fg:#f2ece4; --accent:#e0a064; --card:#27231f; --line:#3a342d; }
+  }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--bg); color:var(--fg); font-family: Georgia, 'Times New Roman', serif; line-height:1.5; }
+  main { max-width:480px; margin:0 auto; padding:48px 20px; text-align:center; }
+  h1 { font-size:2rem; margin:0 0 8px; }
+  .date { font-size:1.25rem; color:var(--accent); margin:0 0 32px; }
+  form { background:var(--card); border:1px solid var(--line); border-radius:12px; padding:24px; text-align:left; }
+  label { display:block; font-weight:bold; margin-bottom:6px; }
+  input[type=text] { width:100%; padding:12px; font-size:1rem; border:1px solid var(--line); border-radius:8px; background:var(--bg); color:var(--fg); }
+  .choices { display:flex; gap:10px; margin:20px 0; }
+  .choices label { flex:1; margin:0; font-weight:normal; }
+  .choices input { position:absolute; opacity:0; }
+  .choices span { display:block; text-align:center; padding:12px 8px; border:1px solid var(--line); border-radius:8px; cursor:pointer; }
+  .choices input:checked + span { background:var(--accent); color:#fff; border-color:var(--accent); }
+  button { width:100%; padding:14px; font-size:1rem; border:0; border-radius:8px; background:var(--accent); color:#fff; cursor:pointer; }
+  button.wa { margin-top:10px; background:#1fa855; }
+</style>
 </head>
 <body>
-  <header>
-    <h1>Yossi's wedding is coming up!</h1>
-    <div class="date">December 21</div>
-    <div id="countdown"></div>
-  </header>
+<main>
+  <h1>Yossi’s wedding is coming up</h1>
+  <p class="date">December 21</p>
 
-  <div class="rsvp">
-    <h2>Are you coming?</h2>
-    <input type="text" id="name" placeholder="Your name">
-    <div>
-      <button class="yes" onclick="sendRsvp('coming')">I'm coming</button>
-      <button class="no" onclick="sendRsvp('not coming')">I can't make it</button>
+  <form action="https://formsubmit.co/yosef5731849@gmail.com" method="POST">
+    <input type="hidden" name="_subject" value="New wedding RSVP">
+    <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="_next" value="https://yossiwedding.github.io/Yossiwedding/thanks.html">
+
+    <label for="name">Your name</label>
+    <input type="text" id="name" name="name" required autocomplete="name">
+
+    <div class="choices">
+      <label><input type="radio" name="answer" value="I'm coming" required><span>I’m coming</span></label>
+      <label><input type="radio" name="answer" value="I can't make it"><span>I can’t make it</span></label>
     </div>
-    <div id="thanks"></div>
-  </div>
 
-  <script>
-    // Countdown to December 21
-    function updateCountdown() {
-      const now = new Date();
-      let year = now.getFullYear();
-      let wedding = new Date(year, 11, 21);
-      if (now > wedding) wedding = new Date(year + 1, 11, 21);
-      const days = Math.ceil((wedding - now) / (1000 * 60 * 60 * 24));
-      document.getElementById('countdown').textContent = days + ' days to go';
-    }
-    updateCountdown();
-
-    // RSVP (for now it only shows a thank-you; saving answers comes next)
-    function sendRsvp(answer) {
-      const name = document.getElementById('name').value.trim();
-      if (!name) { alert('Please type your name first'); return; }
-      const thanks = document.getElementById('thanks');
-      thanks.style.display = 'block';
-      thanks.textContent = answer === 'coming'
-        ? 'Thank you ' + name + ', see you there!'
-        : 'Thank you ' + name + ', we will miss you!';
-      console.log('RSVP:', name, answer);
-    }
-  </script>
+    <button type="submit">Send RSVP by email</button>
+    <button type="button" id="wa" class="wa">Send on WhatsApp</button>
+  </form>
+</main>
+<script>
+  // Put your number with country code, digits only (e.g. 972501234567)
+  var WA_NUMBER = "18455984158";
+  document.getElementById("wa").addEventListener("click", function () {
+    var form = document.querySelector("form");
+    if (!form.reportValidity()) return;
+    var name = form.elements["name"].value;
+    var answer = form.elements["answer"].value;
+    var text = "Wedding RSVP: " + name + " – " + answer;
+    window.location.href = "https://wa.me/" + WA_NUMBER + "?text=" + encodeURIComponent(text);
+  });
+</script>
 </body>
 </html>
